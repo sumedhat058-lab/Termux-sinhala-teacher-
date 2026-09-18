@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termux LK - Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Noto+Sans+Sinhala:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <h1><i class="fa-solid fa-user-shield"></i> Admin Panel - Add Commands</h1>
+        <p>මෙහි ඇති Form එකෙන් අලුත් Commands ඇතුළත් කර JSON Data එක Copy කරගන්න.</p>
+
+        <form id="addCommandForm" class="admin-form">
+            <div class="input-group">
+                <label>Folder (Category):</label>
+                <select id="categorySelect" required>
+                    <option value="termux-basic">Termux මූලික Command</option>
+                    <option value="github">GitHub</option>
+                    <option value="linux">Linux</option>
+                    <option value="ubuntu">Ubuntu</option>
+                    <option value="python">Python</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Command / Code:</label>
+                <input type="text" id="cmdCode" placeholder="eg: pkg update && pkg upgrade" required>
+            </div>
+
+            <div class="input-group">
+                <label>විස්තරය (Description in Sinhala):</label>
+                <textarea id="cmdDesc" rows="3" placeholder="Command එකෙන් සිදුවන දේ සිංහලෙන් විස්තර කරන්න..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Add to List</button>
+        </form>
+
+        <hr style="margin: 2rem 0; border-color: var(--border-color);">
+
+        <h3>Generated `commands.json` Data:</h3>
+        <p style="font-size: 0.85rem; color: #8b949e;">මෙම JSON කේතය Copy කර ඔබගේ GitHub එකේ ඇති <code>commands.json</code> File එකට Replace කරන්න.</p>
+        <textarea id="jsonOutput" rows="10" readonly></textarea>
+        <button onclick="copyJSON()" class="btn-copy">Copy JSON Code</button>
+    </div>
+
+    <script>
+        let currentData = {
+            "categories": [
+                { "id": "termux-basic", "title": "Termux මූලික Command", "icon": "fa-terminal" },
+                { "id": "github", "title": "GitHub Tools", "icon": "fa-brands fa-github" },
+                { "id": "linux", "title": "Linux Commands", "icon": "fa-brands fa-linux" },
+                { "id": "ubuntu", "title": "Ubuntu Setup", "icon": "fa-brands fa-ubuntu" },
+                { "id": "python", "title": "Python Tools", "icon": "fa-brands fa-python" }
+            ],
+            "commands": []
+        };
+
+        // Try to load existing JSON if available
+        fetch('commands.json')
+            .then(res => res.json())
+            .then(data => {
+                currentData = data;
+                document.getElementById('jsonOutput').value = JSON.stringify(currentData, null, 2);
+            }).catch(() => {
+                document.getElementById('jsonOutput').value = JSON.stringify(currentData, null, 2);
+            });
+
+        document.getElementById('addCommandForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const cat = document.getElementById('categorySelect').value;
+            const code = document.getElementById('cmdCode').value;
+            const desc = document.getElementById('cmdDesc').value;
+
+            currentData.commands.push({
+                category: cat,
+                code: code,
+                description: desc
+            });
+
+            document.getElementById('jsonOutput').value = JSON.stringify(currentData, null, 2);
+            document.getElementById('cmdCode').value = '';
+            document.getElementById('cmdDesc').value = '';
+            alert('Command එකතු විය! JSON Code එක Copy කර commands.json එකට Paste කරන්න.');
+        });
+
+        function copyJSON() {
+            const txt = document.getElementById('jsonOutput');
+            txt.select();
+            navigator.clipboard.writeText(txt.value);
+            alert('JSON Code එක Copy කරගත්තා!');
+        }
+    </script>
+</body>
+</html>
