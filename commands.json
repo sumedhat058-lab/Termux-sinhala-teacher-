@@ -1,0 +1,21 @@
+{
+  "categories": [
+    { "id": "termux-basic", "title": "Termux මූලික Command", "icon": "fa-solid fa-terminal" },
+    { "id": "github", "title": "GitHub", "icon": "fa-brands fa-github" },
+    { "id": "linux", "title": "Linux", "icon": "fa-brands fa-linux" },
+    { "id": "ubuntu", "title": "Ubuntu", "icon": "fa-brands fa-ubuntu" },
+    { "id": "python", "title": "Python", "icon": "fa-brands fa-python" }
+  ],
+  "commands": [
+    {
+      "category": "termux-basic",
+      "code": "pkg update && pkg upgrade -y",
+      "description": "Termux එකේ Packages සේරම Update කරගැනීමට."
+    },
+    {
+      "category": "github",
+      "code": "git clone <repository-url>",
+      "description": "GitHub එකේ ඇති Project එකක් Termux එකට Download කරගැනීමට."
+    }
+  ]
+}
