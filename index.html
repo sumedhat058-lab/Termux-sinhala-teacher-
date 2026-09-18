@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termux Sinhala Guide - සිංහලෙන් Termux ඉගෙන ගනිමු</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Sinhala -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="logo">
+            <span>>_</span> Termux Sinhala
+        </div>
+        <input type="text" id="searchInput" placeholder="Search commands or topics... (උදා: pkg, ls, cd)">
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <h1>Termux සිංහලෙන් ඉගෙන ගනිමු</h1>
+        <p>ඉංග්‍රීසි බාධාවක් කරගන්නේ නැතුව, Android එකෙන්ම Linux Terminal එක හරියටම ඉගෙන ගන්න.</p>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h3>මාතෘකා (Topics)</h3>
+            <ul>
+                <li><a href="#intro" class="active">Termux යනු කුමක්ද?</a></li>
+                <li><a href="#setup">මූලික සැකසුම් (Basic Setup)</a></li>
+                <li><a href="#commands">මූලික Commands</a></li>
+                <li><a href="#pkg-manager">Package Manager (pkg / apt)</a></li>
+                <li><a href="#storage">Storage Permission ලබා ගැනීම</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Articles -->
+        <section class="content">
+            
+            <!-- Article 1: Intro -->
+            <article id="intro" class="card">
+                <h2>1. Termux යනු කුමක්ද?</h2>
+                <p>Termux යනු Android මෙහෙයුම් පද්ධතිය සඳහා ඇති **Linux Terminal Emulator** එකකි. Root කිරීමකින් තොරව Linux පරිසරයක් භාවිතා කිරීමටත්, Python, C++, Node.js, Git වැනි විවිධ Tools සහ Programming Languages ධාවනය කිරීමටත් මෙයින් හැකියාව ලැබේ.</p>
+            </article>
+
+            <!-- Article 2: Setup -->
+            <article id="setup" class="card">
+                <h2>2. මූලික සැකසුම් (Basic Setup)</h2>
+                <p>Termux ස්ථාපනය කළ පසු ප්‍රථමයෙන්ම Packages යාවත්කාලීන (Update) කරගත යුතුය. ඒ සඳහා පහත Command එක ලබා දෙන්න:</p>
+                
+                <div class="code-box">
+                    <pre><code>pkg update && pkg upgrade -y</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+            </article>
+
+            <!-- Article 3: Commands Table -->
+            <article id="commands" class="card">
+                <h2>3. නිතර භාවිත වන මූලික Commands</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Command</th>
+                                <th>විස්තරය (Description)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>pwd</code></td>
+                                <td>ඔබ දැනට සිටින Folder එක (Present Working Directory) පෙන්වයි.</td>
+                            </tr>
+                            <tr>
+                                <td><code>ls</code></td>
+                                <td>Folder එක ඇතුලේ ඇති Files සහ Folders ලැයිස්තුව පෙන්වයි.</td>
+                            </tr>
+                            <tr>
+                                <td><code>cd [folder_name]</code></td>
+                                <td>වෙනත් Folder එකක් ඇතුලට යාමට භාවිතා කරයි.</td>
+                            </tr>
+                            <tr>
+                                <td><code>clear</code></td>
+                                <td>Terminal Screen එක Clean කරයි.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+
+            <!-- Article 4: Storage -->
+            <article id="storage" class="card">
+                <h2>4. Storage Permission ලබා ගැනීම</h2>
+                <p>ඔබගේ Phone එකේ Internal Storage එකේ ඇති Files වලට Access කිරීමට පහත Command එක ගසා Permission ලබා දෙන්න:</p>
+                
+                <div class="code-box">
+                    <pre><code>termux-setup-storage</code></pre>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Termux Sinhala Guide | Created with ❤ for Sri Lankan Tech Community</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
